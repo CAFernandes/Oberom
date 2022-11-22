@@ -1,8 +1,8 @@
-import { logger } from '@utils/logger';
-import 'dotenv/config';
+import * as dotenv from 'dotenv';
 import App from './infra/app';
-
-const PORT = Number(process.env.PORT) || 3000;
+dotenv.config({
+  path: process.env.TS_NODE_DEV ? '.env.development.local' : '.env'
+})
 
 //atenção habilitar o log desabilita a saida no console
 if (process.env.SAVE_LOG == 'true') {
@@ -34,11 +34,5 @@ if (process.env.SAVE_LOG == 'true') {
   })
 }
 
-App.app.listen(PORT, () => {
-  logger.level = "debug";
-  console.clear()
-  logger.info(`Backend Staterd in: http://localhost:${PORT}`);
-  logger.info(`Ambiente: ${process.env.TS_NODE_DEV ? 'DEVELOPMENT': 'PRODUCTION'}`)
-  logger.info(`Servidor rodando na porta: ${PORT}`);
-});
+App.listen(Number(process.env.PORT) || 3000)
 process.once('SIGINT', () => App.die());

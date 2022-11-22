@@ -16,8 +16,10 @@
     "rootDir": ".",
     "baseUrl": ".",
     "paths": {
+      "@domain/*":["./src/domain/*"],
       "@errors/*":["./src/core/errors/*"],
       "@middlewares/*":["./src/core/middlewares/*"],
+      "@services/*":["./src/core/services/*"],
       "@utils/*":["./src/core/utils/*"],
     }
   },

@@ -1,5 +1,8 @@
 
-import { getLogger, Logger } from "log4js";
+import { logger } from "@utils/logger";
+import { Logger } from "log4js";
+/* The AppError class is a custom error class that extends the Error class. It has a code and message property, and a saveError
+method that logs the error to the console */
 export class AppError {
   public readonly code:number
   public readonly message:string
@@ -9,7 +12,7 @@ export class AppError {
     this.code = code
     this.message = message
     this.error = error
-    this.logger = getLogger('IM-API');
+    this.logger = logger
   }
   saveError(): void {
     this.logger.level = 'error'

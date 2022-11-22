@@ -1,9 +1,19 @@
+import { logger } from '@utils/logger'
 import { NextFunction, Request, Response } from 'express'
-import { getLogger } from 'log4js'
 
+/**
+ * It logs the request's url, query and body
+ * @param {Request} req - Request - The request object
+ * @param {Response} res - The response object
+ * @param {NextFunction} next - The next middleware function in the stack.
+ */
 export const loggerRequest = (req: Request, res: Response, next: NextFunction): void => {
   const { method, url, body, query } = req
-  const log = getLogger(method)
-  log.trace(`Rota: ${url.split('?')[0]} - Query: ${JSON.stringify(query)} - Body: ${JSON.stringify(body)}`)
+  logger.trace({
+    method,
+    rota: url.split('?')[0],
+    query,
+    body
+  })
   next()
 }
