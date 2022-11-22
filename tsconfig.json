@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "commonjs",
+    "lib": ["es6"],
+    "allowJs": true,
+    "strict": true,
+    "removeComments": true,
+    "typeRoots": [
+      "./node_modules/@types",
+    ],
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./dist",
+    "rootDir": ".",
+    "baseUrl": ".",
+    "paths": {
+      "@errors/*":["./src/core/errors/*"],
+      "@middlewares/*":["./src/core/middlewares/*"],
+      "@utils/*":["./src/core/utils/*"],
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "./src/test/*",
+    "./docker/*",
+    "./*.js",
+    "*.js"
+  ]
+}
