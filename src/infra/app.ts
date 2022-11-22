@@ -1,5 +1,6 @@
 import { Authenticate } from '@domain/Auth/Authenticate';
 import { Session } from '@domain/Session/Session';
+import { Teams } from '@domain/Teams/Teams';
 import { errorHandling } from '@middlewares/errorHandling';
 import { loggerRequest } from '@middlewares/loggerRequest';
 import { logger } from '@utils/logger';
@@ -36,6 +37,7 @@ class App {
   routes(): void {
     this.app.use(Authenticate.routes())
     this.app.use(Session.routes())
+    this.app.use(Teams.routes())
     this.app.use(errorHandling)
   }
   /**
