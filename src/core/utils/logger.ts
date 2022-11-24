@@ -2,6 +2,7 @@ import { configure, getLogger } from "log4js";
 
 //atenção habilitar o log desabilita a saida no console
 if (process.env.SAVE_LOG == 'true') {
+  /* Configuring the log4js library. */
   configure({
     appenders: {
       file: {
@@ -32,4 +33,3 @@ if (process.env.SAVE_LOG == 'true') {
 
 /* Exporting the logger object. */
 export const logger = getLogger('Oberom')
-
