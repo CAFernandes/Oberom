@@ -2,6 +2,7 @@ import { AppError } from "@errors/AppError";
 import { authenticate } from "@services/authenticate";
 import { Router } from "express";
 import { Request, Response } from "express-serve-static-core";
+import { JwtPayload } from "jsonwebtoken";
 
 /* It's a class that has a static method called routes that returns a router object */
 export class Session {  /**
@@ -30,7 +31,7 @@ export class Session {  /**
     if (!/^Bearer$/i.test(type)) {
       throw new AppError(401, 'Malformatted token');
     }
-    const response = authenticate({ token: jwt })
+    const response: string|JwtPayload = authenticate({ token: jwt })
     return res.status(202).json(response)
   }
 }

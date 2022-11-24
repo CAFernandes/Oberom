@@ -1,7 +1,7 @@
 import { AppError } from "@errors/AppError";
 import * as dotenv from 'dotenv';
 import { Request, Response, Router } from "express";
-import { generatejwt } from "src/core/services/generatejwt";
+import { AuthResponse, generatejwt } from "src/core/services/generatejwt";
 dotenv.config({
   path: process.env.TS_NODE_DEV ? '.env.development.local' : '.env'
 })
@@ -15,7 +15,7 @@ export class Authenticate {
    * @returns A router object
    */
   public static routes(): Router {
-    const routes = Router()
+    const routes: Router = Router()
     routes.post('/user', Authenticate.auth)
     return routes
   }
@@ -30,7 +30,7 @@ export class Authenticate {
     if (!user || !password) {
       throw new AppError(400, 'User or Password Invalid')
     }
-    const response = generatejwt({user: user, data: Date.now()}, String(Date.now()))
+    const response: AuthResponse = generatejwt({user: user, data: Date.now()}, String(Date.now()))
     return res.status(200).json(response)
   }
 }

@@ -9,7 +9,7 @@ export class Teams {
    * @returns The routes are being returned.
    */
   static routes(): Router {
-    const routes = Router()
+    const routes: Router = Router()
     routes.get('/teams', Teams.show)
     routes.get('/figures/:team/:id', Teams.index)
     return routes

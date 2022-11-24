@@ -2,7 +2,7 @@ import { Request, Response, Router } from "express";
 
 export class SketchBook {
   public static routes(): Router {
-    const routes = Router()
+    const routes: Router = Router()
 
     routes.get('/figures/:country', SketchBook.show)
     routes.get('/figures/:country/:id', SketchBook.index)

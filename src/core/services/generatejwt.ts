@@ -1,6 +1,6 @@
 import { sign } from "jsonwebtoken"
 
-type AuthResponse = {
+export type AuthResponse = {
   token: string
 }
 
