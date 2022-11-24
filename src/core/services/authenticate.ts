@@ -1,6 +1,6 @@
 import { logger } from '@utils/logger';
 import 'dotenv/config';
-import { verify } from 'jsonwebtoken';
+import { JwtPayload, verify } from 'jsonwebtoken';
 
 type AuthenticateParams = {
   token: string|undefined
@@ -10,7 +10,7 @@ type AuthenticateParams = {
  * It receives a token, verifies it, and returns the result
  * @param {AuthenticateParams} - AuthenticateParams
  */
-export const authenticate = ({ token }: AuthenticateParams): any => {
+export const authenticate = ({ token }: AuthenticateParams): string|JwtPayload => {
   if (!token) {
     return { error: 'Token not informed' };
   }
