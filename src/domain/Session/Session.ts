@@ -10,7 +10,7 @@ export class Session {  /**
   * @returns A router object
   */
   public static routes(): Router {
-    const routes = Router()
+    const routes: Router = Router()
     routes.get('/session', Session.validate)
     return routes
   }
@@ -22,7 +22,7 @@ export class Session {  /**
    * @returns The response is being returned.
    */
   static validate(req: Request, res: Response): Response<any> {
-    const token = req.headers.authorization
+    const token: string | undefined = req.headers.authorization
     if (!token) {
       throw new AppError(401, 'Not Authenticate')
     }

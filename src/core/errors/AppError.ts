@@ -8,12 +8,21 @@ export class AppError {
   public readonly message:string
   private error?:Error
   private logger: Logger
+  /**
+   * The constructor function is a special function that is called when an object is created from a class
+   * @param [code=400] - The HTTP status code to return.
+   * @param {string} message - The message that will be displayed to the user.
+   * @param {Error} [error] - The error object that was thrown.
+   */
   constructor(code=400, message:string, error?:Error) {
     this.code = code
     this.message = message
     this.error = error
     this.logger = logger
   }
+  /**
+   * If the error is not null, then log the error message and stack trace
+   */
   saveError(): void {
     this.logger.level = 'error'
     this.logger.fatal(`${this.message} - ${this.error?.message} ${this.error?.stack}`)

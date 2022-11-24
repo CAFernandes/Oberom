@@ -21,7 +21,6 @@ export class Teams {
    * @returns The response is being returned.
    */
   static show (_: Request, res: Response) {
-    // const response = filterTeamsByGroup(teams);
     return res.json(filterTeamsByGroup(TeamsList))
   }
   static index () {}
