@@ -1,4 +1,4 @@
-import { teams } from "@base/teams";
+import { TeamsList } from "@base/TeamsList";
 import { Request, Response, Router } from "express";
 import { filterTeamsByGroup } from "./services/filterTeamsByGroup";
 
@@ -22,7 +22,7 @@ export class Teams {
    */
   static show (_: Request, res: Response) {
     // const response = filterTeamsByGroup(teams);
-    return res.json(filterTeamsByGroup(teams))
+    return res.json(filterTeamsByGroup(TeamsList))
   }
   static index () {}
 }

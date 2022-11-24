@@ -48,7 +48,7 @@ type Team = {
 }
 type Properties2 = {
 }
-type RootObject = {
+export type RootObject = {
   MatchDay: number;
   IdCompetition: string;
   IdSeason: string;
@@ -94,7 +94,7 @@ type RootObject = {
   IsUpdateable?: any;
 }
 
-export const teams: RootObject[] = [
+export const TeamsList: RootObject[] = [
   {
     "MatchDay": 1,
     "IdCompetition": "17",

@@ -1,5 +1,5 @@
 import { SoccerPlayers } from '@base/SoccerPlayers';
-import { RootObject } from '@base/teams';
+import { RootObject } from '@base/TeamsList';
 import { logger } from '@utils/logger';
 type GroupInfos = {
   ClubName: string;
