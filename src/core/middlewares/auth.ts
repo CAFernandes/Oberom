@@ -1,10 +1,11 @@
 import { NextFunction, Request, Response } from 'express';
+import { JwtPayload } from 'jsonwebtoken';
 import { authenticate } from '../services/authenticate';
 
 declare global {
   namespace Express {
     interface Request {
-      userId?: string | null;
+      payload?: string | JwtPayload;
     }
   }
 }
@@ -18,13 +19,11 @@ declare global {
  */
 export const auth = (req: Request, res: Response, next: NextFunction) => {
   try {
-    const response = authenticate({
+    const response: string | JwtPayload = authenticate({
       token: req.headers.authorization,
     });
 
-    if (response.error) throw new Error(response.error);
-
-    req.userId = response.user?.id;
+    req.payload = response
 
     next();
   } catch ({ message }) {
