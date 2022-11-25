@@ -1,0 +1,36 @@
+version: '3'
+services:
+  database:
+    container_name: Oberom_Database
+    image: 'postgres:alpine'
+    restart: always
+    ports:
+      - '5432:5432'
+    volumes:
+      - 'postgresql_data:/var/lib/postgresql'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=docker
+    networks:
+      - app-net
+  # cache:
+  #   container_name: caching
+  #   restart: always
+  #   build:
+  #     context: .
+  #     dockerfile: redis.dockerfile
+  application:
+    container_name: Oberom_Application
+    build:
+      context: .
+      dockerfile: node.dockerfile
+    networks:
+      - app-net
+    ports:
+      - 1520:1520
+networks:
+  app-net:
+    driver: bridge
+volumes:
+  postgresql_data:
+    driver: local
