@@ -1,4 +1,5 @@
 import { Authenticate } from '@domain/Auth/Authenticate';
+import { Game } from '@domain/Games/Game';
 import { Session } from '@domain/Session/Session';
 import { Teams } from '@domain/Teams/Teams';
 import { errorHandling } from '@middlewares/errorHandling';
@@ -38,6 +39,7 @@ class App {
     this.app.use(Authenticate.routes())
     this.app.use(Session.routes())
     this.app.use(Teams.routes())
+    this.app.use(Game.routes())
     this.app.use(errorHandling)
   }
   /**

@@ -22,6 +22,8 @@
       "@services/*":["./src/core/services/*"],
       "@utils/*":["./src/core/utils/*"],
       "@base/*":["./src/infra/base/*"],
+      "@models/*":["./src/infra/models/*"],
+      "@database/*":["./src/infra/db/*"],
     }
   },
   "exclude": [
