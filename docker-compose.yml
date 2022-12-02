@@ -1,33 +1,39 @@
-version: '3'
+version: '3.1'
 services:
-  database:
+  mongo:
+    image: mongo
     container_name: Oberom_Database
-    image: 'postgres:alpine'
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: oberom_admim
+      MONGO_INITDB_ROOT_PASSWORD: oberom_pass
+    ports:
+      - 27017:27017
+    networks:
+      - app-net
+    volumes:
+      - /home/cafernandes/database
+  mongo-express:
+    image: mongo-express
+    container_name: Oberom_Database_Manage
     restart: always
     ports:
-      - '5432:5432'
-    volumes:
-      - 'postgresql_data:/var/lib/postgresql'
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=docker
+      - 8081:8081
     networks:
       - app-net
-  # cache:
-  #   container_name: caching
-  #   restart: always
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: oberom_admim
+      ME_CONFIG_MONGODB_ADMINPASSWORD: oberom_pass
+      ME_CONFIG_MONGODB_URL: mongodb://oberom_admim:oberom_pass@mongo:27017/
+  # application:
+  #   container_name: Oberom_Application
   #   build:
   #     context: .
-  #     dockerfile: redis.dockerfile
-  application:
-    container_name: Oberom_Application
-    build:
-      context: .
-      dockerfile: node.dockerfile
-    networks:
-      - app-net
-    ports:
-      - 1520:1520
+  #     dockerfile: node.dockerfile
+  #   networks:
+  #     - app-net
+  #   ports:
+  #     - 1520:1520
 networks:
   app-net:
     driver: bridge
