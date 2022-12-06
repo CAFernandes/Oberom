@@ -1,14 +1,11 @@
-import { Authenticate } from '@domain/Auth/Authenticate';
-import { Game } from '@domain/Games/Game';
-import { Session } from '@domain/Session/Session';
-import { Teams } from '@domain/Teams/Teams';
+import { Authenticate, Session } from '@domain/Auth';
+import { Game, Teams } from '@domain/Games';
 import { errorHandling } from '@middlewares/errorHandling';
 import { loggerRequest } from '@middlewares/loggerRequest';
 import { logger } from '@utils/logger';
 import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
-
 
 /* The class App is a class that extends the class Application from the express module */
 class App {

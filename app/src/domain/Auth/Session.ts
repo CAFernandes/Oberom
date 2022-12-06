@@ -31,7 +31,11 @@ export class Session {  /**
     if (!/^Bearer$/i.test(type)) {
       throw new AppError(401, 'Malformatted token');
     }
-    const response: string|JwtPayload = authenticate({ token: jwt })
-    return res.status(202).json(response)
+    try {
+      const response: string|JwtPayload = authenticate({ token: jwt })
+      return res.status(202).json(response)
+    } catch (e: any) {
+      return res.status(401).json(e)
+    }
   }
 }

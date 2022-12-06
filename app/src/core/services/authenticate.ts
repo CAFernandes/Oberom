@@ -10,12 +10,11 @@ type AuthenticateParams = {
  * It receives a token, verifies it, and returns the result
  * @param {AuthenticateParams} - AuthenticateParams
  */
-export const authenticate = ({ token }: AuthenticateParams): string|JwtPayload => {
+export const authenticate = ({ token }: AuthenticateParams): string | JwtPayload => {
   if (!token) {
     return { error: 'Token not informed' };
   }
   logger.debug( process.env.JWT_SECRET ?? 'not_acceptable')
-  const result = verify(token, process.env.JWT_SECRET||'not_acceptable')
-  logger.debug({result})
+  const result: string | JwtPayload = verify(token, process.env.JWT_SECRET||'not_acceptable')
   return result
 }
