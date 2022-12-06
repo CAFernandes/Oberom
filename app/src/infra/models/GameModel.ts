@@ -13,8 +13,6 @@ interface ProjectQueryHelpers {
   >
 }
 
-type ProjectModelType = Model<iGame, ProjectQueryHelpers>;
-
 const GameSchema = new Schema<
   iGame,
   Model<iGame, ProjectQueryHelpers>,
@@ -27,11 +25,6 @@ const GameSchema = new Schema<
 });
 
 /* Creating a new schema for the Game model. */
-// const GameSchema = new Schema<iGame>({
-//   name: { type: String, required: true },
-//   price: { type: String, required: true },
-//   category: { type: String, required: true },
-// })
 GameSchema.query.findAll = function byName(
   this: QueryWithHelpers<any, HydratedDocument<iGame>, ProjectQueryHelpers>,
   name: string

@@ -5,11 +5,12 @@ import { Request, Response } from "express-serve-static-core";
 import { JwtPayload } from "jsonwebtoken";
 
 /* It's a class that has a static method called routes that returns a router object */
-export class Session {  /**
-  * `routes()` is a function that returns a router object that has a get route that takes a request and response object and passes
-  * them to the `validate()` function in the `Session` class
-  * @returns A router object
-  */
+export class Session {
+  /**
+    * `routes()` is a function that returns a router object that has a get route that takes a request and response object and passes
+    * them to the `validate()` function in the `Session` class
+    * @returns A router object
+    */
   public static routes(): Router {
     const routes: Router = Router()
     routes.get('/session', Session.validate)
