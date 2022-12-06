@@ -12,7 +12,10 @@ type AuthenticateParams = {
  */
 export const authenticate = ({ token }: AuthenticateParams): string | JwtPayload => {
   if (!token) {
-    return { error: 'Token not informed' };
+    return {
+      status: 'error',
+      message: 'Token not informed'
+    };
   }
   logger.debug( process.env.JWT_SECRET ?? 'not_acceptable')
   const result: string | JwtPayload = verify(token, process.env.JWT_SECRET||'not_acceptable')

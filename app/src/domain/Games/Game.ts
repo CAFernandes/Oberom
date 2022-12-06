@@ -40,6 +40,12 @@ export class Game {
       return res.status(500).send(error?.message || error);
     }
   }
+  /**
+   * It validates the request body, connects to the database, creates a new game, saves it, and returns the game
+   * @param {Request} req - Request - The request object
+   * @param {Response} res - Response - This is the response object that will be returned to the client.
+   * @returns The game object is being returned.
+   */
   static async store(req: Request, res: Response) {
     const validate = Game.validateRequestStore(req.body)
     if (Object.keys(validate).length > 0) {
@@ -61,6 +67,11 @@ export class Game {
     })
   }
 
+  /**
+   * It takes a StoreRequestGame object as a parameter and returns an object with the name, price, and category properties
+   * @param {StoreRequestGame} body - StoreRequestGame - This is the type of the request body.
+   * @returns An object with the keys name, price, and category.
+   */
   static validateRequestStore(body: StoreRequestGame): { name?: string, price?: string, category?: string } {
     let error = {}
     if (!body.name) {
